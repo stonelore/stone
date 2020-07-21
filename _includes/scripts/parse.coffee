@@ -5,7 +5,7 @@ $(".parse").each ->
     api_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{$(e.target).data "file"}.csv"
     load = $(e.target).serializeArray().map (e) -> e.name
       .join "\n"
-    if !storage.get "login.permissioins.push" then return alert "You need to login with 'push' permission"
+    if !storage.get "login.permissions.push" then return alert "You need to login with 'push' permission"
     get_content = $.ajax url,
       headers: "Authorization": "token #{storage.get("login.token")}"
       method: "GET"
