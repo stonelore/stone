@@ -15,7 +15,7 @@ $(".parse").each ->
         # File not found: create
         json =
           message: "Create"
-          content: btoa load
+          content: btoa("NAMES\n#{load}")
         put_content = $.ajax api_url,
           headers: "Authorization": "token #{storage.get("login.token")}"
           method: "PUT"
@@ -30,6 +30,7 @@ $(".parse").each ->
       else alert "#{status}: #{error}"
       return
     get_content.done (data, status) ->
+      console.log data.sha, atob data.content
       json =
         message: "Append"
         sha: data.sha
