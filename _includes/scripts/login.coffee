@@ -63,7 +63,7 @@ login = {
         string = "Logged as #{user}, #{role}"
         login.link.attr "title", string
         alert string
-        compare "{{ site.github.build_revision }}", data.updated_at
+        console.log "{{ site.github.build_revision }}", data.updated_at
         true
     true
 }

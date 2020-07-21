@@ -40,7 +40,10 @@ $(".parse").each ->
   # Fetch page
   get_content = $.ajax "https://cors-anywhere.herokuapp.com/" + $(@).data("parse-url"),
     cache: false
-  get_content.fail (request, status, error) -> alert "#{status}: #{error}"
+  get_content.fail (request, status, error) ->
+    alert "#{status}: #{error}"
+    console.log request.getAllResponseHeaders()
+    return
   # Fetch callback
   get_content.done (data, status) =>
     # Parse HTML
