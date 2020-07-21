@@ -30,11 +30,10 @@ $(".parse").each ->
       else alert "#{status}: #{error}"
       return
     get_content.done (data, status) ->
-      console.log data.sha, atob data.content
       json =
         message: "Append"
         sha: data.sha
-        content: btoa(atob(data.content) + load)
+        content: btoa(atob(data.content) + "\n#{load}")
       put_content = $.ajax api_url,
         headers: "Authorization": "token #{storage.get("login.token")}"
         method: "PUT"
@@ -43,10 +42,7 @@ $(".parse").each ->
         alert "#{status}: #{error}"
         console.log request.getAllResponseHeaders()
         return
-      put_content.done (data, status) ->
-        alert "#{status}"
-        console.log data
-        return
+      put_content.done (data, status) -> alert "#{status}"
       return
     return
   # Fetch page
