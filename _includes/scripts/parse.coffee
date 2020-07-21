@@ -6,7 +6,7 @@ $(".parse").each ->
     load = $(e.target).serializeArray().map (e) -> e.name
       .join "\n"
     if !storage.get "login.permissions.push" then return alert "You need to login with 'push' permission"
-    get_content = $.ajax url,
+    get_content = $.ajax api_url,
       headers: "Authorization": "token #{storage.get("login.token")}"
       method: "GET"
       cache: false
