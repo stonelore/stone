@@ -14,12 +14,15 @@ $(".parse").each ->
       if error == 'Not Found'
         # File not found: create
         json =
+          message: "Create"
           content: btoa load
         put_content = $.ajax api_url,
           headers: "Authorization": "token #{storage.get("login.token")}"
           method: "PUT"
           data: JSON.stringify json
-        put_content.fail (request, status, error) -> alert "#{status}: #{error}"
+        put_content.fail (request, status, error) ->
+          alert "#{status}: #{error}"
+          console.log request.getAllResponseHeaders()
         put_content.done (data, status) ->
           alert "#{status}"
           console.log data
@@ -28,13 +31,17 @@ $(".parse").each ->
       return
     get_content.done (data, status) ->
       json =
+        message: "Append"
         sha: data.sha
         content: btoa(atob(data.content) + load)
       put_content = $.ajax api_url,
         headers: "Authorization": "token #{storage.get("login.token")}"
         method: "PUT"
         data: JSON.stringify json
-      put_content.fail (request, status, error) -> alert "#{status}: #{error}"
+      put_content.fail (request, status, error) ->
+        alert "#{status}: #{error}"
+        console.log request.getAllResponseHeaders()
+        return
       put_content.done (data, status) ->
         alert "#{status}"
         console.log data
