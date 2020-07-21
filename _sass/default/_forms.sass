@@ -1,0 +1,62 @@
+form
+  margin-bottom: 1rem
+  background-color: #f8f8f8
+  border: 1px solid Gainsboro
+  // An inline element only takes up as much width as necessary
+  display: inline-block
+  div:not(.array):not(.array-item):not(.additional-property):not(.property)
+    padding: .6rem
+    margin: 0
+  h3, h4
+    margin: 0
+    padding: .6rem .8rem 0 .8rem
+    & + span
+      padding: 0rem 0.6rem 0.2rem 0.6rem
+    & + div.array
+      margin-top: .6rem
+    & + div.buttons
+      margin-top: .6rem
+  div.buttons
+      background: Gainsboro
+  div.array
+    border-top: 1px solid Gainsboro
+  div.invalid
+      background: LightPink
+  // Input and labels
+  label:not(.boolean), input:not([type=range]), select, textarea
+    display: block
+  label
+    margin: 0 .2rem .1rem .2rem
+    &.radio
+      margin-left: 0
+      input[type=radio]
+        margin-right: 0.3rem
+  textarea
+    padding: .4rem
+  // Descriptions and units
+  span:not(.index)
+    margin: .1rem .2rem 0 .2rem
+    font-size: smaller
+    display: block
+  // Ranges
+  input[type="range"]
+    &::-moz-focus-outer
+      border: 0
+    &:focus
+      outline: none
+  output
+    position: relative
+    top: -0.45rem
+  // Booleans
+  input[type="checkbox"],
+  input[type="radio"]
+    outline: none
+    float: left
+    margin: .3rem .1rem 0 0
+  // Buttons
+  button:enabled, select:enabled, input:enabled, label[for], label.radio
+    cursor: pointer
+  // Array UI
+  a[data-prevent]
+    font-weight: normal
+    font-size: small

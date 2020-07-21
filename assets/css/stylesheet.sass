@@ -1,0 +1,56 @@
+---
+---
+
+// VARIABLES
+$small_screen: 40em
+$font_size: {{ site.css.font.size | default: "15px" }}
+$font_color: {{ site.css.font.color | default: "Black" }}
+$link_color: {{ site.css.link.color | default: "MediumBlue" }}
+$html_background: {{ site.css.html.background | default: "Gainsboro" }}
+$main_background: {{ site.css.main.background | default: "White" }}
+$width: {{ site.css.max_width | default: "100%" }}
+$navigation_background: {{ site.css.navigation.background | default: "Gainsboro" }}
+$navigation_hover_background: {{ site.css.navigation.hover.background | default: "Gainsboro" }}
+{% assign theme = site.css.theme | default: "default" %}
+
+// @import mixins
+// @import headings
+@import {{ theme }}/forms
+// @import grids
+// @import code
+@import {{ theme }}/links
+// @import tables
+// @import details
+@import {{ theme }}/navigation
+// @import calendar
+// @import bars
+// @import trees
+
+html
+  overflow-y: scroll
+  background: $html_background
+
+body
+  font-size: $font_size
+  color: $font_color
+  margin: 0
+
+main
+  background: $main_background
+
+// SCAFFOLDING
+section
+  padding: .5em 2em
+  margin: 0 auto
+  max-width: $width
+
+// DATETIME
+[datetime]
+  cursor: default
+
+template
+  display: none
+
+hr
+  border: 2px solid $main_background
+  margin: 0.3em 0

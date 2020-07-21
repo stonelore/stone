@@ -1,0 +1,22 @@
+<nav>
+  <ul>
+    {%- assign html_pages = site.html_pages | sort: "weight" -%}
+    {% for link in html_pages %}<li><a href="{{ link.url | relative_url }}"{% if page.url == link.url %} class="active"{% endif %}>{{ link.title }}</a></li>{% endfor %}
+    {%- assign sorted_collections = site.collections | sort: "weight" -%}
+    {%- for collection in sorted_collections -%}{%- if collection.docs.size > 0 -%}
+    <li class="dropdown">
+      <span{% if page.collection == collection.label %} class="active"{% endif %}>
+        {{ collection.title | default: collection.label }} &#x25BE;
+      </span>
+      <div class="dropdown-menu">
+        {%- assign collection_pages = collection.docs | sort: "weight" -%}
+        {% for link in collection_pages %}
+        <a href="{{ link.url | relative_url }}"{% if page.url == link.url %} class="active"{% endif %}>{{ link.title }}</a>{% endfor %}
+      </div>
+    </li>
+    {% endif %}{%- endfor -%}
+  </ul>
+  <ul>
+    <li><a href="#" id="login-button" style="display: none">Login</a></li>
+  </ul>
+</nav>

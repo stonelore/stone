@@ -1,0 +1,8 @@
+# Plugins list
+plugins:
+  - jekyll-coffeescript
+  - jekyll-default-layout
+  - jekyll-github-metadata
+  - jekyll-titles-from-headings
+
+permalink: pretty

@@ -1,0 +1,7 @@
+<!-- STYLESHEETS -->
+
+<!-- Main -->
+<link rel="stylesheet" href="{{ '/assets/css/stylesheet.css' | relative_url }}?updated_at={{ 'now' | date: '%s' }}">
+
+<!-- Syntax -->
+<link rel="stylesheet" href="{% assign syntax = site.css.syntax | default: 'github.css' | prepend: '/assets/css/syntax/' %}{{ syntax | relative_url }}">
