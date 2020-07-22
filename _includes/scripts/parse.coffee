@@ -1,10 +1,12 @@
 $(".parse").each ->
-  f = $(@).find("form")
+  f = $(@).find "form"
+  presents = JSON.parse(f.find("script[type='application/json']")[0].innerHTML)
   # Form handler
   f.on "submit", (e) ->
-    api_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{$(e.target).data "file"}.csv"
-    load = $(e.target).serializeArray().map (e) -> e.name
+    api_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{f.data "file"}.csv"
+    load = f.serializeArray().map (e) -> e.name
       .join "\n"
+    console.log load
     if !storage.get "login.permissions.push" then return alert "You need to login with 'push' permission"
     get_content = $.ajax api_url,
       headers: "Authorization": "token #{storage.get("login.token")}"
@@ -66,15 +68,18 @@ $(".parse").each ->
       line = $("<div/>")
       # Loop element
       e.map (string, j) =>
-        line.append $("<input/>",{
+        attributes =
           type: "checkbox"
-          id: "#{string}-#{i}#{j}"
+          id: "#{string}-#{i}-#{j}"
           name: string
-        })
-        .append $("<label/>",{
-          for: "#{string}-#{i}#{j}"
-          text: string
-        })
+        if string in presents
+          attributes.checked = ""
+          attributes.disabled = ""
+        line.append $("<input/>", attributes)
+          .append $("<label/>",{
+            for: "#{string}-#{i}-#{j}"
+            text: string
+          })
         return
       # Append checkbox
       $(@).find("form .buttons").before line

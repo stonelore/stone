@@ -53,6 +53,8 @@ form
     outline: none
     float: left
     margin: .3rem .1rem 0 0
+    &[disabled] + label
+      color: Red
   // Buttons
   button:enabled, select:enabled, input:enabled, label[for], label.radio
     cursor: pointer
