@@ -44,7 +44,10 @@ $(".parse").each ->
         alert "#{status}: #{error}"
         console.log request.getAllResponseHeaders()
         return
-      put_content.done (data, status) -> alert "#{status}"
+      put_content.done (data, status) ->
+        alert "#{status}:\n#{load}"
+        console.log f.find(".parse-update")[0].innerHTML
+        return
       return
     return
   # Fetch page
