@@ -1,7 +1,8 @@
 <div class="parse" data-parse-url="{{ include.schema.url }}" data-parse-get="{{ include.schema.get }}" data-parse-update="{{ include.schema.update }}" data-parse-attribute="{{ include.schema.attribute }}">
   <form data-prevent="true" data-file="{{ include.schema.file }}">
     <script type="application/json">{{ site.data[include.schema.file] | map: site.data[include.schema.file][0].first[0] | sort | jsonify }}</script>
-    <div class="parse-update">Parsing</div>
+    <div class="controls"><a href="#" data-prevent="true" start-parsing>Start parsing</a></div>
+    <div class="parse-update"></div>
     <div class="buttons">
       <button type="submit">Save</button> <button type="reset">Reset</button>
     </div>
