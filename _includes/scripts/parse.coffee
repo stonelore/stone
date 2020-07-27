@@ -50,7 +50,7 @@ $(".parse").each ->
         alert "#{status}:\n#{load}"
         storage.set "parse.updated_at", f.find(".parse-update")[0].innerHTML
         return
-      put_content.always -> f.find(":input").prop "disabled", false
+      put_content.always -> f.find(":input:not([checked])").prop "disabled", false
       return
     return
   # Fetch page
