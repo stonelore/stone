@@ -10,5 +10,5 @@
 console.log storage.get()
 
 # Prevent default events on forms and links
-$("body").on "submit", "form[data-prevent]", (e) -> e.preventDefault()
-$("body").on "click", "a[data-prevent]", (e) -> e.preventDefault()
+$("a[data-prevent]").on "click", (e) -> e.preventDefault()
+$("form[data-prevent]").on "submit", (e) -> e.preventDefault()
