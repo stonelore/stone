@@ -14,7 +14,7 @@ $(".parse").each ->
       method: "GET"
       cache: false
     get_content.fail (request, status, error) ->
-      f.find(":input").prop "disabled", false
+      f.find(":input:not([checked])").prop "disabled", false
       if error == 'Not Found'
         # File not found: create
         json =
@@ -56,11 +56,11 @@ $(".parse").each ->
   # Fetch page
   f.on "click", "a[start-parsing]", (e) =>
     f.find(".controls").text "Parsing..."
-    get_content = $.ajax "https://cors-anywhere.herokuapp.com/" + $(@).data("parse-url"),
+    get_content = $.ajax "https://afternoon-hollows-35729.herokuapp.com/" + $(@).data("parse-url"),
       cache: false
     get_content.fail (request, status, error) ->
       alert "#{status}: #{error}"
-      console.log request.getAllResponseHeaders()
+      console.log request.getAllResponseHeaders(), request.status
       return
     # Fetch callback
     get_content.done (data, status) =>
