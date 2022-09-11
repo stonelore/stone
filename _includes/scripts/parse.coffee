@@ -1,6 +1,7 @@
 $(".parse").each ->
   f = $(@).find "form"
   presents = JSON.parse(f.find("script[type='application/json']")[0].innerHTML)
+  console.log presents
   # Form handler
   f.on "submit", (e) ->
     api_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{f.data "file"}.csv"
@@ -19,7 +20,7 @@ $(".parse").each ->
         # File not found: create
         json =
           message: "Create"
-          content: btoa("NAMES\n#{load}")
+          content: btoa("dead\n#{load}")
         put_content = $.ajax api_url,
           headers: "Authorization": "token #{storage.get("login.token")}"
           method: "PUT"
