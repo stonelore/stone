@@ -1,7 +1,6 @@
 $(".parse").each ->
   f = $(@).find "form"
   presents = JSON.parse(f.find("script[type='application/json']")[0].innerHTML)
-  console.log presents
   # Form handler
   f.on "submit", (e) ->
     api_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{f.data "file"}.csv"
