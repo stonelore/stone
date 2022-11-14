@@ -56,8 +56,10 @@ $(".parse").each ->
   # Fetch page
   f.on "click", "a[start-parsing]", (e) =>
     f.find(".controls").text "Parsing..."
-    get_content = $.ajax "https://afternoon-hollows-35729.herokuapp.com/" + $(@).data("parse-url"),
+    get_content = $.ajax "{{ page.parse.url | absolute_url }}",
       cache: false
+    # get_content = $.ajax "https://afternoon-hollows-35729.herokuapp.com/" + $(@).data("parse-url"),
+    #   cache: false
     get_content.fail (request, status, error) ->
       alert "#{status}: #{error}"
       console.log request.getAllResponseHeaders(), request.status
