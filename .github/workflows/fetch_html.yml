@@ -1,0 +1,15 @@
+name: Fetch HTML page
+on:
+  schedule:
+    # Run at 00:01 06:01 12:01 18:01 UTC every day
+    - cron: '1 0/6 * * *'
+
+jobs:
+  fetch:
+    name: Fetch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: wget "https://necrologie.messaggeroveneto.gelocal.it" --output-document=assets/necro.html
+      - name: Git Auto Commit
+        uses: stefanzweifel/git-auto-commit-action@v4
