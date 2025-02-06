@@ -77,11 +77,10 @@ $(".parse").each ->
       # Create elements array
       elements = []
       $($(@).data("parse-get"), parsed).each (i, el) -> elements.push $(el).text().trim().toUpperCase().split(" ")
-      # $($(@).data("parse-get"), parsed).each (i, val) -> elements.push "#{val}".split(" ")
-      # console.log $($(@).data("parse-get"), parsed).text()
-      # $($(@).data("parse-get"), parsed).attr $(@).data("parse-attribute"), (i, val) -> elements.push "#{val}".split(" ")
+      # Remove Duplicates
+      uniquelements = [...new Set(elements)]
       # Loop elements
-      elements.map (e, i) =>
+      uniquelements.map (e, i) =>
         line = $("<div/>")
         # Loop element
         e.map (string, j) =>
