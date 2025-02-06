@@ -70,12 +70,16 @@ $(".parse").each ->
       # Parse HTML
       parsed = $.parseHTML data
       # Print update
-      updated = $($(@).data("parse-update"), parsed).text()
+      # updated = $($(@).data("parse-update"), parsed).text()
+      updated = $('[href*="/cerca?data_da="]', parsed).eq(0).attr('href').substr 15, 10
       if storage.get("parse.updated_at") is updated then updated += " *"
       $(@).find(".parse-update").text updated
       # Create elements array
       elements = []
-      $($(@).data("parse-get"), parsed).attr $(@).data("parse-attribute"), (i, val) -> elements.push "#{val}".split(" ")
+      $($(@).data("parse-get"), parsed).each (i, el) -> elements.push $(el).text().trim().split(" ")
+      # $($(@).data("parse-get"), parsed).each (i, val) -> elements.push "#{val}".split(" ")
+      # console.log $($(@).data("parse-get"), parsed).text()
+      # $($(@).data("parse-get"), parsed).attr $(@).data("parse-attribute"), (i, val) -> elements.push "#{val}".split(" ")
       # Loop elements
       elements.map (e, i) =>
         line = $("<div/>")
