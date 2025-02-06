@@ -78,7 +78,8 @@ $(".parse").each ->
       elements = []
       $($(@).data("parse-get"), parsed).each (i, el) -> elements.push $(el).text().trim().toUpperCase().split(" ")
       # Remove Duplicates
-      uniquelements = [...new Set(elements)]
+      # uniquelements = [...new Set(elements)]
+      uniquelements = Array.from new Set elements
       # Loop elements
       uniquelements.map (e, i) =>
         line = $("<div/>")
