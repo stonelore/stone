@@ -1,3 +1,13 @@
+Array::unique = ->
+  output = {}
+  output[@[key]] = @[key] for key in [0...@length]
+  value for key, value of output
+
+push_if_new = (el, elements) ->
+  new_item = $(el).text().trim().toUpperCase().split(" ")
+  unless new_item in elements then elements.push(new_item)
+  return
+
 $(".parse").each ->
   f = $(@).find "form"
   presents = JSON.parse(f.find("script[type='application/json']")[0].innerHTML)
@@ -76,10 +86,10 @@ $(".parse").each ->
       $(@).find(".parse-update").text updated
       # Create elements array
       elements = []
-      $($(@).data("parse-get"), parsed).each (i, el) -> elements.push $(el).text().trim().toUpperCase().split(" ")
+      # $($(@).data("parse-get"), parsed).each (i, el) -> elements.push $(el).text().trim().toUpperCase().split(" ")
+      $($(@).data("parse-get"), parsed).each (i, el) -> push_if_new el, elements
       # Remove Duplicates
-      # uniquelements = [...new Set(elements)]
-      uniquelements = Array.from new Set elements
+      uniquelements = elements.unique()
       # Loop elements
       uniquelements.map (e, i) =>
         line = $("<div/>")

@@ -11,3 +11,7 @@ parse:
 # Stone
 
 {% include parse.html schema=page.parse %}
+
+- [workflows/fetch_html]({{ site.github.repository_url }}/blob/{{ site.github.public_repositories | where: "html_url", site.github.repository_url | first | map: "default_branch" | first }}/.github/workflows/fetch_html.yml)
+- [assets/necro.html]({{ site.github.repository_url }}/blob/{{ site.github.public_repositories | where: "html_url", site.github.repository_url | first | map: "default_branch" | first }}/assets/necro.html)
+- [necrologie.messaggeroveneto](https://necrologie.messaggeroveneto.gelocal.it)
